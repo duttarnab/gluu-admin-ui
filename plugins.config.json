@@ -1,26 +1,26 @@
 [
   {
     "title": "Services Plugin",
-    "key": "services",
-    "metadataFile": "./services/plugin-metadata",
+    "key": "aui-services-plugin",
+    "metadataFile": "./aui-services-plugin/plugin-metadata",
     "enabled": true
   },
   {
     "title": "Auth Server Plugin",
-    "key": "auth-server",
-    "metadataFile": "./auth-server/plugin-metadata",
+    "key": "aui-auth-server-plugin",
+    "metadataFile": "./aui-auth-server-plugin/plugin-metadata",
     "enabled": true
   },
   {
     "title": "Schema Plugin",
-    "key": "schema",
-    "metadataFile": "./schema/plugin-metadata",
+    "key": "aui-schema-plugin",
+    "metadataFile": "./aui-schema-plugin/plugin-metadata",
     "enabled": true
   },
   {
     "title": "Admin Plugin",
-    "key": "admin",
-    "metadataFile": "./admin/plugin-metadata",
+    "key": "aui-admin-plugin",
+    "metadataFile": "./aui-admin-plugin/plugin-metadata",
     "enabled": true
   }
 ]
