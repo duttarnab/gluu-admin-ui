@@ -137,6 +137,9 @@ module.exports = {
           name: 'static/[name].[ext]',
         },
       },
+      {  
+        test: /\.md$/, use: 'raw-loader'  
+      },
     ],
   },
   devServer: {
