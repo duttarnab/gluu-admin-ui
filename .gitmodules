@@ -1,0 +1,12 @@
+[submodule "plugins/aui-auth-server-plugin"]
+	path = plugins/aui-auth-server-plugin
+	url = https://github.com/duttarnab/aui-auth-server-plugin.git
+[submodule "plugins/aui-schema-plugin"]
+	path = plugins/aui-schema-plugin
+	url = https://github.com/duttarnab/aui-schema-plugin.git
+[submodule "plugins/aui-services-plugin"]
+	path = plugins/aui-services-plugin
+	url = https://github.com/duttarnab/aui-services-plugin.git
+[submodule "plugins/aui-admin-plugin"]
+	path = plugins/aui-admin-plugin
+	url = https://github.com/duttarnab/aui-admin-plugin.git
