@@ -31,12 +31,20 @@ const commands = {
       .map(path => rimraf.sync(path));
     },
     resetPluginConfig: function() {
-      const sourcePath = dirParamToPath('plugins');
-      
-      fse.writeFileSync(
+      const pluginsDir = dirParamToPath('plugins');
+      let configJson = []
+
+      fse.readdirSync(pluginsDir)
+      .map(file => path.join(pluginsDir, file))
+      .filter(path => fse.statSync(path).isDirectory())
+      .filter(path =>     fse.readdirSync(path).length > 0)
+      .map(path => configJson.push(this.createPluginEntry(this.getLastFolderName(path))));
+      fse.writeFileSync(path.join(dirParamToPath('rootDir'), 'plugins.config.json'),JSON.stringify(configJson, null, 2));
+        
+      /*fse.writeFileSync(
         path.join(dirParamToPath('rootDir'), 'plugins.config.json'),
         JSON.stringify(pluginsObj
-          .filter(ele => fse.existsSync(path.join(sourcePath, ele.key))), null, 2));
+          .filter(ele => fse.existsSync(path.join(sourcePath, ele.key))), null, 2));*/
     },
     addPlugin: function(sourcePath) {
       const pluginsPath = dirParamToPath('plugins');
@@ -45,9 +53,7 @@ const commands = {
         console.error('Plugin zip not found at %s', sourcePath);
         return;
       }
-      var lastFolderName = sourcePath.split('/').filter(function(el) {
-        return el.trim().length > 0;
-      }).pop().split('.').slice(0, -1).join('.');
+      var lastFolderName = this.getLastFolderName(sourcePath).split('.').slice(0, -1).join('.');
 
       const pluginPathInRepo = path.join(pluginsPath, lastFolderName);
       if (fse.existsSync(pluginPathInRepo)) {
@@ -82,7 +88,7 @@ const commands = {
     createPluginEntry: function(pluginKey) {
       const pluginObj = {};
       pluginObj.key = pluginKey;
-      pluginObj.metadataFile = './' + path.join(pluginKey, 'plugin-metadata');
+      pluginObj.metadataFile = './' + pluginKey+ '/plugin-metadata';
       return pluginObj;
     },
     showAllPlugins: function() {
@@ -95,6 +101,11 @@ const commands = {
       console.log('- '+ele.key)
       });
     },
+    getLastFolderName: function(path) {
+      return path.replace(/\\/g, '/').split('/').filter(function(el) {
+        return el.trim().length > 0;
+      }).pop();
+    }
 };
 
 program
